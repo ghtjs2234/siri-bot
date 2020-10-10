@@ -155,7 +155,7 @@ client.on('message', (message) => {
         x.user.send(embed)
       });
   
-      return message.reply('전달사항전달완료!.');
+      return message.reply('전달완료.');
     } else {
       return message.reply('채널에서 실행해주세요.');
     }
