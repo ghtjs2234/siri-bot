@@ -43,13 +43,6 @@ client.on('message', (message) => {
     return message.reply('네주인님~');
   }
   
-  client.on('message', (message) => {
-    if(message.author.bot) return;
-    
-  if(message.content == '디바야 끝말잇기 하자') {
-    return message.reply('네주인님 저부터시작할게요.이리듐~');
-  }   
-
   if(message.content == 'embed') {
     let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
     let embed = new Discord.RichEmbed()
