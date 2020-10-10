@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const token = process.argv.length == 2 ? process.env.token : "";
 const welcomeChannelName = "안녕하세요";
 const byeChannelName = "안녕히가세요";
-const welcomeChannelComment = "안녕하세요 디바_자료방입니다.입장 후에는 자동으로 시민권이 지급되며 무료자료방의있는자료들을 이용하실수있습니다.";
+const welcomeChannelComment = "안녕하세요 디바_자료방입니다.";
 const byeChannelComment = "BYE~BYE~.";
 
 client.on('ready', () => {
@@ -32,17 +32,10 @@ client.on("guildMemberRemove", (member) => {
 client.on('message', (message) => {
   if(message.author.bot) return;
 
-  if(message.content == '배고파') {
-    return message.reply('니가해먹어라');
+  if(message.content == '딸랑딸랑~') {
+    return message.reply('네주인님부르셨나요?');
   }
 
-  client.on('message', (message) => {
-  if(message.author.bot) return;
-  
-  if(message.content == '딸랑~') {
-    return message.reply('네주인님~');
-  }
-  
   if(message.content == 'embed') {
     let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
     let embed = new Discord.RichEmbed()
@@ -65,8 +58,7 @@ client.on('message', (message) => {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: '디바야', desc: 'help'},
-      {name: '배고파', desc: '현재 핑 상태'},
-      {name: '딸랑~', desc: '봇 부르기'},
+      {name: '딸랑딸랑~', desc: '현재 핑 상태'},
       {name: 'embed', desc: 'embed 예제1'},
       {name: '전체주목!', desc: 'dm으로 전체 공지 보내기'},
       {name: '!청소', desc: '텍스트 지움'},
