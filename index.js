@@ -3,12 +3,12 @@ const client = new Discord.Client();
 const token = process.argv.length == 2 ? process.env.token : "";
 const welcomeChannelName = "안녕하세요";
 const byeChannelName = "안녕히가세요";
-const welcomeChannelComment = "어서오세요.디바_자료방입니다";
-const byeChannelComment = "안녕히가세요.";
+const welcomeChannelComment = "안녕하세요 디바_자료방입니다.입장 후에는 자동으로 시민권이 지급되며 무료자료방의있는자료들을 이용하실수있습니다.";
+const byeChannelComment = "BYE~BYE~.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '디바야 라고불러보세요.' }, status: 'online' })
+  client.user.setPresence({ game: { name: '디바야를쳐보세요.' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -33,8 +33,23 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '배고파') {
-    return message.reply('니가해먹어');
+    return message.reply('니가해먹어라');
   }
+
+  client.on('message', (message) => {
+  if(message.author.bot) return;
+  
+  if(message.content == '딸랑~') {
+    return message.reply('네주인님~');
+  }
+  
+  client.on('message', (message) => {
+    if(message.author.bot) return;
+    
+  if(message.content == '디바야 끝말잇기 하자') {
+    return message.reply('네주인님 저부터시작할게요.이리듐~');
+  }
+    
 
   if(message.content == 'embed') {
     let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
@@ -54,11 +69,13 @@ client.on('message', (message) => {
       .setFooter('나긋해가 만듬', img)
 
     message.channel.send(embed)
-  } else if(message.content == '디바야') {
+  } else if(message.content == '!help') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: '디바야', desc: 'help'},
       {name: '배고파', desc: '현재 핑 상태'},
+      {name: '딸랑~', desc: '봇 부르기'},
+      {name: '디바야 끝말잇기 하자', desc: '끝말잇기'},
       {name: 'embed', desc: 'embed 예제1'},
       {name: '전체주목!', desc: 'dm으로 전체 공지 보내기'},
       {name: '!청소', desc: '텍스트 지움'},
@@ -94,7 +111,7 @@ client.on('message', (message) => {
         x.user.send(`<@${message.author.id}> ${contents}`);
       });
   
-      return message.reply('전달사항 전달 완료!.');
+      return message.reply('전달사항전달 완료!.');
     } else {
       return message.reply('채널에서 실행해주세요.');
     }
@@ -107,7 +124,7 @@ client.on('message', (message) => {
     var isNum = !isNaN(clearLine)
 
     if(isNum && (clearLine <= 0 || 1000 < clearLine)) {
-      message.channel.send("1개부터 1000개 범위내에숫자밖에안됌 ㅋ")
+      message.channel.send("1부터 1000까지의 숫자만 입력해주세요.")
       return;
     } else if(!isNum) { // c @나긋해 3
       if(message.content.split('<@').length == 2) {
@@ -131,7 +148,7 @@ client.on('message', (message) => {
     } else {
       message.channel.bulkDelete(parseInt(clearLine)+1)
         .then(() => {
-          AutoMsgDelete(message, `<@${message.author.id}> ` + parseInt(clearLine) + "개의메세지삭제 완료. (이 메세지는 곧 사라짐ㅋ.)");
+          AutoMsgDelete(message, `<@${message.author.id}> ` + parseInt(clearLine) + "개의메세지삭제완료!. (이 메세지는 잠시 후에 사라집니다.)");
         })
         .catch(console.error)
     }
@@ -140,7 +157,7 @@ client.on('message', (message) => {
 
 function checkPermission(message) {
   if(!message.member.hasPermission("MANAGE_MESSAGES")) {
-    message.channel.send(`<@${message.author.id}> ` + "당신은권한이없어요~.")
+    message.channel.send(`<@${message.author.id}> ` + "당신은사용할권한이없어요~.")
     return true;
   } else {
     return false;
