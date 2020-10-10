@@ -48,8 +48,7 @@ client.on('message', (message) => {
     
   if(message.content == '디바야 끝말잇기 하자') {
     return message.reply('네주인님 저부터시작할게요.이리듐~');
-  }
-    
+  }   
 
   if(message.content == 'embed') {
     let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
@@ -75,7 +74,6 @@ client.on('message', (message) => {
       {name: '디바야', desc: 'help'},
       {name: '배고파', desc: '현재 핑 상태'},
       {name: '딸랑~', desc: '봇 부르기'},
-      {name: '디바야 끝말잇기 하자', desc: '끝말잇기'},
       {name: 'embed', desc: 'embed 예제1'},
       {name: '전체주목!', desc: 'dm으로 전체 공지 보내기'},
       {name: '!청소', desc: '텍스트 지움'},
