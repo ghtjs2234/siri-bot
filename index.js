@@ -35,7 +35,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '배고파') {
-    return message.reply('니가해먹어');
+    return message.reply('니가해먹어.');
   }
 
   if(message.content == '!si') {
