@@ -8,7 +8,7 @@ const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '!help를 쳐보세요.' }, status: 'online' })
+  client.user.setPresence({ game: { name: '디바야 라고불러보세요.' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -54,15 +54,15 @@ client.on('message', (message) => {
       .setFooter('나긋해가 만듬', img)
 
     message.channel.send(embed)
-  } else if(message.content == '시리야') {
+  } else if(message.content == '디바야') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
-      {name: '시리야', desc: 'help'},
+      {name: '디바야', desc: 'help'},
       {name: '배고파', desc: '현재 핑 상태'},
       {name: 'embed', desc: 'embed 예제1'},
-      {name: '!전체공지', desc: 'dm으로 전체 공지 보내기'},
+      {name: '전체주목!', desc: 'dm으로 전체 공지 보내기'},
       {name: '!청소', desc: '텍스트 지움'},
-      {name: '!초대', desc: '초대 코드 표기'},
+      {name: '입장코드내놔', desc: '초대 코드 표기'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
@@ -78,23 +78,23 @@ client.on('message', (message) => {
     embed.addField('Commands: ', commandStr);
 
     message.channel.send(embed)
-  } else if(message.content == '!초대코드') {
+  } else if(message.content == '입장코드내놔') {
     message.guild.channels.get(message.channel.id).createInvite({maxAge: 0}) // maxAge: 0은 무한이라는 의미, maxAge부분을 지우면 24시간으로 설정됨
       .then(invite => {
         message.channel.send(invite.url)
       });
   }
 
-  if(message.content.startsWith('!전체공지')) {
+  if(message.content.startsWith('전체주목!')) {
     if(checkPermission(message)) return
     if(message.member != null) { // 채널에서 공지 쓸 때
-      let contents = message.content.slice('!전체공지'.length);
+      let contents = message.content.slice('전체주목!'.length);
       message.member.guild.members.array().forEach(x => {
         if(x.user.bot) return;
         x.user.send(`<@${message.author.id}> ${contents}`);
       });
   
-      return message.reply('공지를 전송했습니다.');
+      return message.reply('전달사항 전달 완료!.');
     } else {
       return message.reply('채널에서 실행해주세요.');
     }
