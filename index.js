@@ -5,12 +5,12 @@ const moment = require("moment");
 require("moment-duration-format");
 const welcomeChannelName = "안녕하세요";
 const byeChannelName = "안녕히가세요";
-const welcomeChannelComment = "어서오세요.";
+const welcomeChannelComment = "어서오세요.디바_자료방입니다.";
 const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '디바야를 쳐보세요.' }, status: 'online' })
+  client.user.setPresence({ game: { name: '시리야하고불러보세요.' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -35,7 +35,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '배고파') {
-    return message.reply('니가해먹어.');
+    return message.reply('니가 쳐해먹어라');
   }
 
   if(message.content == '!si') {
@@ -87,13 +87,13 @@ client.on('message', (message) => {
       .setFooter('나긋해가 만듬', img)
 
     message.channel.send(embed)
-  } else if(message.content == '디바야') {
+  } else if(message.content == '시리야') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
-      {name: '디바야', desc: 'help'},
+      {name: '시리야', desc: '시리호출'},
       {name: '배고파', desc: '현재 핑 상태'},
       {name: 'embed', desc: 'embed 예제1'},
-      {name: '!전체공지', desc: 'dm으로 전체 공지 보내기'},
+      {name: '전체주목!', desc: 'dm으로 전체 공지 보내기'},
       {name: '!전체공지2', desc: 'dm으로 전체 embed 형식으로 공지 보내기'},
       {name: '!청소', desc: '텍스트 지움'},
       {name: '!초대코드', desc: '해당 채널의 초대 코드 표기'},
@@ -155,20 +155,20 @@ client.on('message', (message) => {
         x.user.send(embed)
       });
   
-      return message.reply('공지를 전송했습니다.');
+      return message.reply('전달사항전달완료!.');
     } else {
       return message.reply('채널에서 실행해주세요.');
     }
-  } else if(message.content.startsWith('!전체공지')) {
+  } else if(message.content.startsWith('전체주목!')) {
     if(checkPermission(message)) return
     if(message.member != null) { // 채널에서 공지 쓸 때
-      let contents = message.content.slice('!전체공지'.length);
+      let contents = message.content.slice('전체주목!'.length);
       message.member.guild.members.array().forEach(x => {
         if(x.user.bot) return;
         x.user.send(`<@${message.author.id}> ${contents}`);
       });
   
-      return message.reply('공지를 전송했습니다.');
+      return message.reply('전달사항전달완료!.');
     } else {
       return message.reply('채널에서 실행해주세요.');
     }
@@ -182,8 +182,8 @@ client.on('message', (message) => {
     var clearLine = message.content.slice('!청소 '.length);
     var isNum = !isNaN(clearLine)
 
-    if(isNum && (clearLine <= 0 || 100 < clearLine)) {
-      message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
+    if(isNum && (clearLine <= 0 || 1000 < clearLine)) {
+      message.channel.send("1부터 1000까지의 숫자만 입력해주세요.")
       return;
     } else if(!isNum) { // c @나긋해 3
       if(message.content.split('<@').length == 2) {
@@ -215,7 +215,7 @@ client.on('message', (message) => {
 
 function checkPermission(message) {
   if(!message.member.hasPermission("MANAGE_MESSAGES")) {
-    message.channel.send(`<@${message.author.id}> ` + "명령어를 수행할 관리자 권한을 소지하고 있지않습니다.")
+    message.channel.send(`<@${message.author.id}> ` + "당신은 권한이 없어요~.")
     return true;
   } else {
     return false;
